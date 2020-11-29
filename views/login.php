@@ -1,5 +1,6 @@
 <?php
 //checking submit form
+/*
 if(isset($_POST['login'])){
 
 
@@ -14,6 +15,34 @@ else{
 
 }
 }
+*/
+$servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "bank";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+    }
+
+
+    $sql = "SELECT id FROM userinfo WHERE userName='".$id."'AND pass= '".$pass."' ";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+    // output data of each row
+        $conn->close();
+        return true;
+    } 
+    else {
+        $conn->close();
+        echo "0 results";
+        return false; 
+    }
+
 
 ?>
 <!DOCTYPE html>
